@@ -1,3 +1,3 @@
 import streamlit as st
 
-st.title('Здесь тест по сериалам')
+st.title('Тест по сериалам')
