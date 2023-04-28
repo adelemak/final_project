@@ -3,7 +3,7 @@ from streamlit_extras.switch_page_button import switch_page
 
 st.title("Пройди тест и узнай, какой ты мультик :orange[Nickelodeon]:tada:")
 
-go_back = st.button(":orange[**Hi**]")
+go_back = st.button(":orange[**Вернуться назад**]")
 if go_back:
     switch_page("main code")
 
