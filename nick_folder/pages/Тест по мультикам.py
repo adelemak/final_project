@@ -14,7 +14,7 @@ dict_fin = {
 
 def question(amount):  # получает на вход количество вариантов ответа для вопросов: 4 или 9
 
-    data = pd.read_csv('https://raw.githubusercontent.com/adelemak/final_project/main/nick_data.csv?token=GHSAT0AAAAAACA56NSLSRYG5BPOYX3DH6SWZCUYZFQ',
+    data = pd.read_csv('https://gitlab.com/ddariath/hse_python_intro/-/raw/main/nick_data.csv',
         sep=";", on_bad_lines='skip')
     for num in range(1, amount + 1):
 
