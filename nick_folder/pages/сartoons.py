@@ -30,9 +30,9 @@ def question(amount):  # получает на вход количество в�
         #dict_fin[user_result] = + 1
     return user_answ
         
-def count_result(question(amount)):
+def count_result(list_of answers):
     #учет ответов пользователя  
-    for answer in  question(amount):
+    for answer in  list_of_answers:
         user_result = data['result'].iloc[[data.index[data['answer'] == option]]]
         global dict_fin
         dict_fin[user_result] = + 1
@@ -62,6 +62,7 @@ if go_back:
     switch_page("main code")
 
 question(5)
+count_result(question(amount))
     
 res_button = st.button("Узнать результаты")
 if res_button:
