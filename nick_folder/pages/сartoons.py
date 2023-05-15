@@ -19,8 +19,8 @@ def question(amount):  # получает на вход количество в�
         que_str = que.to_string(index=False)
         #for num in range(1, amount + 1):
         
-        start = (amount + 1) * num - amount
-        end = (amount + 1) * num - 1
+        start = (amount + 1) * quest_num - amount
+        end = (amount + 1) * quest_num - 1
         answ = data['answer'].loc[start:end].tolist()
 
         st.markdown(que_str)
