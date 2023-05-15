@@ -30,7 +30,7 @@ def question(amount):  # получает на вход количество в�
         #dict_fin[user_result] = + 1
     return user_answ
         
-def count_result(list_of answers):
+def count_result(list_of_answers):
     #учет ответов пользователя  
     for answer in  list_of_answers:
         user_result = data['result'].iloc[[data.index[data['answer'] == option]]]
