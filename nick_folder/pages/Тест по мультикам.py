@@ -4,8 +4,7 @@ import streamlit as st
 import pandas as pd
 
 
-#data = pd.read_csv('https://raw.githubusercontent.com/adelemak/final_project/main/nick_data.csv?token=GHSAT0AAAAAACA56NSLR2RH366AS3KZIRLOZBZNQLQ',
- #                  sep=";", on_bad_lines='skip')
+#data = pd.read_csv('../../question_data.csv', sep=";", on_bad_lines='skip')
 
 # словарь для подсчета очков результата
 dict_fin = {
@@ -14,23 +13,23 @@ dict_fin = {
 
 def question(amount):  # получает на вход количество вариантов ответа для вопросов: 4 или 9
 
-    data = pd.read_csv('https://raw.githubusercontent.com/adelemak/final_project/main/nick_data.csv?token=GHSAT0AAAAAACA56NSLR2RH366AS3KZIRLOZBZNQLQ',
-        sep=";", on_bad_lines='skip')
-    for num in range(1, amount + 1):
+    data = pd.read_csv('../../question_data.csv', sep=";", on_bad_lines='skip')
+    for quest_num in range(1, 9):
+        for num in range(1, amount + 1):
 
-        que = data['answer'].iloc[[10 * num - 10]]
-        que_str = que.to_string(index=False)
+            que = data['answer'].iloc[[6 * num - 6]]
+            que_str = que.to_string(index=False)
 
-        start = 10 * num - 9
-        end = 10 * num - 1
-        answ = data['answer'].loc[start:end].tolist()
+            start = 6 * num - 5
+            end = 6 * num - 1
+            answ = data['answer'].loc[start:end].tolist()
 
-        st.markdown(que_str)
-        option = st.radio("скрытый текст вопроса", answ, label_visibility="collapsed")
+            st.markdown(que_str)
+            option = st.radio("скрытый текст вопроса", answ, label_visibility="collapsed")
 
-        user_result = data['result'].iloc[[data.index[data['answer'] == option]]]
-        global dict_fin
-        dict_fin[user_result] = + 1
+            user_result = data['result'].iloc[[data.index[data['answer'] == option]]]
+            global dict_fin
+            dict_fin[user_result] = + 1
 
 
 st.title("Пройди тест и узнай, какой ты мультик :orange[Nickelodeon]:tada:")
@@ -41,7 +40,7 @@ if go_back:
 
 quest_button = st.button(":orange[**Начать тест**]")
 if quest_button:
-    question(9)
+    question(5)
 
 col1, col2 = st.columns(2)
 
