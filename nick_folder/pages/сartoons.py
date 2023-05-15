@@ -12,7 +12,7 @@ dict_fin = {
 
 def question(amount):  # получает на вход количество вариантов ответа для вопросов: 5
 
-    data = pd.read_csv('../../question_data.csv', sep=";", on_bad_lines='skip')
+    data = pd.read_csv('../question_data.csv', sep=";", on_bad_lines='skip')
 
     for quest_num in range (1, 9):
         for num in range(1, amount + 1):
