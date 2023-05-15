@@ -36,7 +36,7 @@ def count_result(list_of_answers):
     global data
     #учет ответов пользователя  
     for answer in  list_of_answers:
-        user_result = data['result'].iloc[[data.index[data['answer'] == option]]]
+        user_result = data['result'].iloc[[data.index[data['answer'] == answer]]]
         global dict_fin
         dict_fin[user_result] = + 1
     
