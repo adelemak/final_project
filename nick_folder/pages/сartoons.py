@@ -15,21 +15,20 @@ def question(amount):  # получает на вход количество в�
     data = pd.read_csv('https://gitlab.com/ddariath/nick_data/-/raw/main/question_data.csv', sep=";", on_bad_lines='skip')
 
     for quest_num in range (1, 9):
-        for num in range(1, amount + 1):
+        que = data['answer'].iloc[[6 * quest_num - 6]]
+        que_str = que.to_string(index=False)
+        #for num in range(1, amount + 1):
+        
+        start = (amount + 1) * num - amount
+        end = (amount + 1) * num - 1
+        answ = data['answer'].loc[start:end].tolist()
 
-            que = data['answer'].iloc[[6 * quest_num - 6]]
-            que_str = que.to_string(index=False)
+        st.markdown(que_str)
+        option = st.radio("скрытый текст вопроса", answ, label_visibility="collapsed")
 
-            start = 6 * num - 5
-            end = 6 * num - 1
-            answ = data['answer'].loc[start:end].tolist()
-
-            st.markdown(que_str)
-            option = st.radio("скрытый текст вопроса", answ, label_visibility="collapsed")
-
-            user_result = data['result'].iloc[[data.index[data['answer'] == option]]]
-            global dict_fin
-            dict_fin[user_result] = + 1
+        user_result = data['result'].iloc[[data.index[data['answer'] == option]]]
+        global dict_fin
+        dict_fin[user_result] = + 1
 
 
 st.title("Пройди тест и узнай, какой ты мультик :orange[Nickelodeon]:tada:")
