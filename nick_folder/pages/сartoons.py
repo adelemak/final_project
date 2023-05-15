@@ -13,7 +13,7 @@ dict_fin = {
 def question(amount):  # получает на вход количество вариантов ответа для вопросов: 5
 
     data = pd.read_csv('https://gitlab.com/ddariath/nick_data/-/raw/main/question_data.csv', sep=";", on_bad_lines='skip')
-
+    user_answ = []
     for quest_num in range (1, 9):
         que = data['answer'].iloc[[6 * quest_num - 6]]
         que_str = que.to_string(index=False)
@@ -25,10 +25,10 @@ def question(amount):  # получает на вход количество в�
 
         st.markdown(que_str)
         option = st.radio("скрытый текст вопроса", answ, label_visibility="collapsed")
-
-        user_result = data['result'].iloc[[data.index[data['answer'] == option]]]
-        global dict_fin
-        dict_fin[user_result] = + 1
+        user_answ.append(option)
+        #user_result = data['result'].iloc[[data.index[data['answer'] == option]]]
+        #global dict_fin
+        #dict_fin[user_result] = + 1
 
 
 st.title("Пройди тест и узнай, какой ты мультик :orange[Nickelodeon]:tada:")
