@@ -61,7 +61,7 @@ go_back = st.button(":orange[**Вернуться назад**]")
 if go_back:
     switch_page("main code")
 
-question(5)
+#question(5)
 count_result(question(5))
     
 res_button = st.button("Узнать результаты")
