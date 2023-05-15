@@ -17,7 +17,7 @@ def question(amount):  # получает на вход количество в�
     for quest_num in range (1, 9):
         for num in range(1, amount + 1):
 
-            que = data['answer'].iloc[[6 * num - 6]]
+            que = data['answer'].iloc[[6 * quest_num - 6]]
             que_str = que.to_string(index=False)
 
             start = 6 * num - 5
