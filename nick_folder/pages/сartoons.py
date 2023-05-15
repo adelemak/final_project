@@ -37,9 +37,7 @@ go_back = st.button(":orange[**Вернуться назад**]")
 if go_back:
     switch_page("main code")
 
-quest_button = st.button(":orange[**Начать тест**]")
-if quest_button:
-    question(5)
+question(5)
     
 res_button = st.button("Узнать результаты")
 if res_button:
