@@ -10,9 +10,11 @@ dict_fin = {
              'ГБ': 0, 'КБ': 0, "ДП": 0, "ЭА": 0, "ДН": 0
             }
 
-def question(amount):  # получает на вход количество вариантов ответа для вопросов: 5
+data = pd.read_csv('https://gitlab.com/ddariath/nick_data/-/raw/main/question_data.csv', sep=";", on_bad_lines='skip')
 
-    data = pd.read_csv('https://gitlab.com/ddariath/nick_data/-/raw/main/question_data.csv', sep=";", on_bad_lines='skip')
+def question(amount):  # получает на вход количество вариантов ответа для вопросов: 5
+    global data
+    #data = pd.read_csv('https://gitlab.com/ddariath/nick_data/-/raw/main/question_data.csv', sep=";", on_bad_lines='skip')
     user_answ = []
     for quest_num in range (1, 9):
         que = data['answer'].iloc[[6 * quest_num - 6]]
@@ -31,6 +33,7 @@ def question(amount):  # получает на вход количество в�
     return user_answ
         
 def count_result(list_of_answers):
+    global data
     #учет ответов пользователя  
     for answer in  list_of_answers:
         user_result = data['result'].iloc[[data.index[data['answer'] == option]]]
