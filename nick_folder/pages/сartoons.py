@@ -40,3 +40,7 @@ if go_back:
 quest_button = st.button(":orange[**Начать тест**]")
 if quest_button:
     question(5)
+    
+res_button = st.button("Узнать результаты")
+if res_button:
+    switch_page("result")
