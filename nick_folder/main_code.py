@@ -26,6 +26,6 @@ with col_test1:
 with col_test2:
     switch2 = st.button(":rainbow: :green[**Тест по мультикам**]")
     if switch2:
-        switch_page("сartoons")
+        switch_page("cartoons")
 
 card(title="Nickelodeon",text=":)", image="https://vejasp.abril.com.br/wp-content/uploads/2016/12/nickelodeon.jpg?quality=70&strip=info&w=600&resize=1200,800")

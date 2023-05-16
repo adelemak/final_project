@@ -2,6 +2,9 @@ import os
 from streamlit_extras.switch_page_button import switch_page
 import streamlit as st
 import pandas as pd
+from PIL import Image
+import random
+from pathlib import Path
 
 
 # словарь для подсчета очков результата
@@ -12,18 +15,24 @@ data = pd.read_csv(os.path.join(os.path.dirname(__file__), '../question_data.csv
 
 # data = pd.read_csv('https://gitlab.com/ddariath/nick_data/-/raw/main/question_data.csv', sep=";", on_bad_lines='skip')
 
+
 def question(amount):  # получает на вход количество вариантов ответа для вопросов: 5
     global data
     user_answ = []
-    for quest_num in range(1, 9):
-        que = data['answer'].iloc[[6 * quest_num - 6]]
-        que_str = que.to_string(index=False)
+    for quest_num in range(1, 10):
+
+        que = data['answer'].iloc[[6 * quest_num - 6]].values[0]
+        if 'png' in que:
+            file_name = Path(que)
+            st.image(Image.open(os.path.join(os.path.dirname(__file__), file_name)))
+
+        else:
+            st.markdown(que)
 
         start = (amount + 1) * quest_num - amount
         end = (amount + 1) * quest_num - 1
         answ = data['answer'].loc[start:end].tolist()
 
-        st.markdown(que_str)
         option = st.radio("скрытый текст вопроса", answ, label_visibility="collapsed")
         user_answ.append(option)
         # user_result = data['result'].iloc[[data.index[data['answer'] == option]]]
@@ -34,6 +43,7 @@ def question(amount):  # получает на вход количество в�
 
 def count_result(list_of_answers):
     global data
+
     # учет ответов пользователя
     for answer in list_of_answers:
         user_result = data['result'].iloc[data.index[data['answer'] == answer]].values[0]
