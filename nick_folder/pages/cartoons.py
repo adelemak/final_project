@@ -11,6 +11,7 @@ from pathlib import Path
 dict_fin = {
     'ГБ': 0, 'КБ': 0, "ДП": 0, "ЭА": 0, "ДН": 0
 }
+
 data = pd.read_csv(os.path.join(os.path.dirname(__file__), '../question_data.csv'), sep=";", on_bad_lines='skip')
 
 # data = pd.read_csv('https://gitlab.com/ddariath/nick_data/-/raw/main/question_data.csv', sep=";", on_bad_lines='skip')
@@ -18,44 +19,55 @@ data = pd.read_csv(os.path.join(os.path.dirname(__file__), '../question_data.csv
 
 def question(amount):  # получает на вход количество вариантов ответа для вопросов: 5
     global data
-    user_answ = []
+    st.session_state['option'] = []
+    # user_answ = []
     for quest_num in range(1, 10):
 
         que = data['answer'].iloc[[6 * quest_num - 6]].values[0]
+
+        # вывод вопроса-картинки
         if 'png' in que:
             file_name = Path(que)
             st.image(Image.open(os.path.join(os.path.dirname(__file__), file_name)))
 
+        # вывод текстового вопроса
         else:
             st.markdown(que)
 
+        # список вариантов ответов
         start = (amount + 1) * quest_num - amount
         end = (amount + 1) * quest_num - 1
-        answ = data['answer'].loc[start:end].tolist()
+        answers = data['answer'].loc[start:end].tolist()
 
-        option = st.radio("скрытый текст вопроса", answ, label_visibility="collapsed")
-        user_answ.append(option)
-        # user_result = data['result'].iloc[[data.index[data['answer'] == option]]]
-        # global dict_fin
-        # dict_fin[user_result] = + 1
+        # вывод вариантов ответа
+        current_question_option = st.radio("скрытый текст вопроса", answers, label_visibility="collapsed")
+
+        # добавление ответа пользователя в session state
+        if current_question_option:
+            st.session_state['option'].append(current_question_option)
+
+    user_answ = st.session_state['option']
+    st.write(user_answ)  # проверка вывода
+
     return user_answ
 
 
 def count_result(list_of_answers):
     global data
+    global dict_fin
 
     # учет ответов пользователя
     for answer in list_of_answers:
-        user_result = data['result'].iloc[data.index[data['answer'] == answer]].values[0]
-        global dict_fin
+        user_result = data['result'].iloc[data.index[data['answer'] == answer]].to_string(index=False)  #values[0]
         dict_fin[user_result] += 1
+
 
     # поиск результата с максимальным значением
     list_fin = dict_fin.values()
     res_fin = max(list_fin)
-    res_list = []
 
     # поиск ключа по максимальному значению
+    res_list = []
     for key, value in dict_fin.items():
         if res_fin == value:
             res_list.append(key)
@@ -75,8 +87,9 @@ go_back = st.button(":orange[**Вернуться назад**]")
 if go_back:
     switch_page("main code")
 
-count_result(question(5))
+list_of_users_answers = question(5)
 
 res_button = st.button("Узнать результаты")
 if res_button:
-    switch_page("result")
+    users_result = count_result(list_of_users_answers)
+    switch_page("result_cartoons")
