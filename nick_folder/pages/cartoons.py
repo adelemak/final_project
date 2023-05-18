@@ -47,7 +47,7 @@ def question(amount):  # получает на вход количество в�
             st.session_state['option'].append(current_question_option)
 
     user_answ = st.session_state['option']
-    st.write(user_answ)  # проверка вывода
+    # st.write(user_answ)  # проверка вывода
 
     return user_answ
 
@@ -58,7 +58,7 @@ def count_result(list_of_answers):
 
     # учет ответов пользователя
     for answer in list_of_answers:
-        user_result = data['result'].iloc[data.index[data['answer'] == answer]].to_string(index=False)  #values[0]
+        user_result = data['result'].iloc[data.index[data['answer'] == answer]].to_string(index=False)
         dict_fin[user_result] += 1
 
 
@@ -81,6 +81,20 @@ def count_result(list_of_answers):
     return result
 
 
+data_res = pd.read_csv(os.path.join(os.path.dirname(__file__), '../result_data.csv'), sep=";", on_bad_lines='skip')
+
+
+def print_result(res):
+    i_res = data_res.index[data_res['Result'] == res]
+    name_result = data_res['Full_name'].iloc[i_res].values[0]
+    st.title(f'Ваш результат - :orange[{name_result}]')
+    text_result = data_res['Text'].iloc[i_res].values[0]
+    st.subheader(text_result)
+    image_result = data_res['Image'].iloc[i_res].values[0]
+    st.text(image_result)
+    image_name = Path(image_result)
+    st.image(Image.open(os.path.join(os.path.dirname(__file__), image_name)))
+
 st.title("Пройди тест и узнай, какой ты мультик :orange[Nickelodeon]:tada:")
 
 go_back = st.button(":orange[**Вернуться назад**]")
@@ -89,7 +103,8 @@ if go_back:
 
 list_of_users_answers = question(5)
 
-res_button = st.button("Узнать результаты")
+res_button = st.button(":orange[**Узнать результаты**]")
 if res_button:
     users_result = count_result(list_of_users_answers)
+    #print_result(users_result)
     switch_page("result_cartoons")
