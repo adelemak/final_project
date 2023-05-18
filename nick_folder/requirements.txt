@@ -1,3 +1,7 @@
 streamlit==1.21.0
 streamlit-extras>=0.2.7
 pandas
+PIL
+pathlib
+random
+os
