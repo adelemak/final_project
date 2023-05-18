@@ -5,7 +5,7 @@ from pathlib import Path
 from PIL import Image
 from streamlit_extras.switch_page_button import switch_page
 
-users_result = st.session_state['users_result']
+users_result = st.session_state['users_result_cartoons']
 
 data_res = pd.read_csv(os.path.join(os.path.dirname(__file__), '../result_data.csv'), sep=";", on_bad_lines='skip')
 

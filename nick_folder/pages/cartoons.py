@@ -14,8 +14,6 @@ dict_fin = {
 
 data = pd.read_csv(os.path.join(os.path.dirname(__file__), '../question_data.csv'), sep=";", on_bad_lines='skip')
 
-# data = pd.read_csv('https://gitlab.com/ddariath/nick_data/-/raw/main/question_data.csv', sep=";", on_bad_lines='skip')
-
 
 def question(amount):  # получает на вход количество вариантов ответа для вопросов: 5
     global data
@@ -91,10 +89,10 @@ go_back = st.button(":orange[**Вернуться назад**]")
 if go_back:
     switch_page("main code")
 
-list_of_users_answers = question(5)
+list_of_users_answers = question(amount=5)
 
 res_button = st.button(":orange[**Узнать результаты**]")
 if res_button:
-    users_result = count_result(list_of_users_answers)
-    st.session_state['users_result'] = users_result
+    users_result = count_result(list_of_answers=list_of_users_answers)
+    st.session_state['users_result_cartoons'] = users_result
     switch_page("result_cartoons")

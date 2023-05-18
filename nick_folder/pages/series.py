@@ -6,27 +6,97 @@ from PIL import Image
 import random
 from pathlib import Path
 
-sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+#sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
-from cartoons import question, count_result
+#from cartoons import question, count_result
 
 # словарь для подсчета очков результата
 dict_fin = {
     'ДЖ': 0, 'ДЧ': 0, "ЖЗК": 0, "ВВП": 0, "ХМ": 0
 }
+
 data = pd.read_csv(os.path.join(os.path.dirname(__file__), '../question_series.csv'), sep=";", on_bad_lines='skip')
 
-# код страницы
-st.title("Пройди тест и узнай, какой ты сериал :purple[Disney]:tada:")
 
-go_back = st.button(":purple[**Вернуться назад**]")
+def question(amount):  # получает на вход количество вариантов ответа для вопросов: 5
+    global data
+    st.session_state['option'] = []
+    for quest_num in range(1, 11):
+
+        que = data['answer'].iloc[[6 * quest_num - 6]].values[0]
+
+        # вывод вопроса-картинки
+        if '.jpg' in que:
+            file_name = Path(que)
+            st.image(Image.open(os.path.join(os.path.dirname(__file__), file_name)))
+        elif '.png' in que:
+            file_name = Path(que)
+            st.image(Image.open(os.path.join(os.path.dirname(__file__), file_name)))
+        elif '.jpeg' in que:
+            file_name = Path(que)
+            st.image(Image.open(os.path.join(os.path.dirname(__file__), file_name)))
+
+        # вывод текстового вопроса
+        else:
+            st.markdown(que)
+
+        # список вариантов ответов
+        start = (amount + 1) * quest_num - amount
+        end = (amount + 1) * quest_num - 1
+        answers = data['answer'].loc[start:end].tolist()
+
+        # вывод вариантов ответа
+        current_question_option = st.radio("скрытый текст вопроса", answers, label_visibility="collapsed")
+
+        # добавление ответа пользователя в session state
+        if current_question_option:
+            st.session_state['option'].append(current_question_option)
+
+    user_answ = st.session_state['option']
+
+    return user_answ  # возвращает список ответов пользователя
+
+
+def count_result(list_of_answers):  # получает на вход список ответов пользователя
+    global data
+    global dict_fin
+
+    # учет ответов пользователя
+    for answer in list_of_answers:
+        user_result = data['result'].iloc[data.index[data['answer'] == answer]].to_string(index=False)
+        dict_fin[user_result] += 1
+
+    # поиск результата с максимальным значением
+    list_fin = dict_fin.values()
+    res_fin = max(list_fin)
+
+    # поиск ключа по максимальному значению
+    res_list = []
+    for key, value in dict_fin.items():
+        if res_fin == value:
+            res_list.append(key)
+
+    # выбор результата при одинаковых значениях
+    if len(res_list) > 1:
+        result = random.choice(res_list)
+    else:
+        result = res_list[0]
+
+    return result  # возвращает результат пользователя
+
+
+
+# код страницы
+st.title("Пройди тест и узнай, какой ты сериал :violet[Disney]:tada:")
+
+go_back = st.button(":violet[**Вернуться назад**]")
 if go_back:
     switch_page("main code")
 
-list_of_users_answers = question(5)
+list_of_users_answers = question(amount=5)
 
-res_button = st.button(":purple[**Узнать результаты**]")
+res_button = st.button(":violet[**Узнать результаты**]")
 if res_button:
-    users_result = count_result(list_of_users_answers)
+    users_result = count_result(list_of_answers=list_of_users_answers)
     st.session_state['users_result_series'] = users_result
     switch_page("result_series")
