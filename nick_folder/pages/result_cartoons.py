@@ -1,14 +1,10 @@
 import streamlit as st
 import pandas as pd
-from pages.cartoons import dict_fin, users_result, list_of_users_answers  # dict_fin - для проверки словаря результатов,
-                                                   # users_result - результат пользователя
 import os
-from cartoons import count_result, question
+from pathlib import Path
+from PIL import Image
 
-
-data = pd.read_csv(os.path.join(os.path.dirname(__file__), '../question_data.csv'), sep=";", on_bad_lines='skip')
-
-
+users_result = st.session_state['users_result']
 
 data_res = pd.read_csv(os.path.join(os.path.dirname(__file__), '../result_data.csv'), sep=";", on_bad_lines='skip')
 
@@ -23,8 +19,5 @@ def print_result(res):
     image_name = Path(image_result)
     st.image(Image.open(os.path.join(os.path.dirname(__file__), image_name)))
 
-print_result(users_result)
-#st.write(users_result) - не передается
-st.write(dict_fin)  # для проверки
-st.write(dict_of_users_answers)
 
+print_result(users_result)
