@@ -13,7 +13,7 @@ data_res = pd.read_csv(os.path.join(os.path.dirname(__file__), '../result_data.c
 def print_result(res):
     i_res = data_res.index[data_res['Result'] == res]
     name_result = data_res['Full_name'].iloc[i_res].values[0]
-    st.title(f'Ваш результат - :orange[{name_result}]!')
+    st.title(f'Ваш результат - :orange[{name_result}]:tada:')
     image_result = data_res['Image'].iloc[i_res].values[0]
     image_name = Path(image_result)
     st.image(Image.open(os.path.join(os.path.dirname(__file__), image_name)))
@@ -23,10 +23,13 @@ def print_result(res):
 st.balloons()
 print_result(users_result)
 
-start_test_again = st.button(":orange[**Пройти тест снова**]:rocket:")
-if start_test_again:
-    switch_page("cartoons")
+col_var, col_var2 = st.columns(2)
 
-go_to_main = st.button(":orange[**Вернуться на главную**]:taxi:")
-if go_to_main:
-    switch_page("main code")
+with col_var:
+    start_test_again = st.button(":rocket: :orange[**Пройти тест снова**]")
+    if start_test_again:
+        switch_page("cartoons")
+with col_var2:
+    go_to_main = st.button(":taxi: :orange[**Вернуться на главную**]")
+    if go_to_main:
+        switch_page("main code")
