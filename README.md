@@ -10,6 +10,6 @@
 Мы реализовали наш проект с помощью фрэймворка <b>Streamlit</b>.
 
 ## Как запустить код
-Для запуска кода нужно установить Streamlit <a href="https://docs.streamlit.io/library/get-started/installation">docs.streamlit.io/library/get-started/installation</a> и запустить файл main_code, сохраняя структуру файлов. main_code - основная страница приложения, на том же уровне расположена папка pages, внутри которой хранятся остальные страницы. 
+Для запуска кода нужно установить Streamlit <a href="https://docs.streamlit.io/library/get-started/installation">docs.streamlit.io/library/get-started/installation</a> и запустить файл `main_code`, сохраняя структуру файлов. `main_code` - основная страница приложения, на том же уровне расположена папка pages, внутри которой хранятся остальные страницы. 
 ## Ресурсы
 - Документация Streamlit: <a href="https://docs.streamlit.io">docs.streamlit.io.com</a>
