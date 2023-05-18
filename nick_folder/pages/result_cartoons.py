@@ -3,6 +3,7 @@ import pandas as pd
 import os
 from pathlib import Path
 from PIL import Image
+from streamlit_extras.switch_page_button import switch_page
 
 users_result = st.session_state['users_result']
 
@@ -19,5 +20,13 @@ def print_result(res):
     text_result = data_res['Text'].iloc[i_res].values[0]
     st.subheader(text_result)
 
-st.baloons()
+st.balloons()
 print_result(users_result)
+
+start_test_again = st.button(":orange[**Пройти тест снова**]")
+if start_test_again:
+    switch_page("cartoons")
+
+go_to_main = st.button(":orange[**Вернуться на главную**]")
+if go_to_main:
+    switch_page("main code")
