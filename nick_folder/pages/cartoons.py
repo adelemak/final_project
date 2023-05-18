@@ -20,13 +20,12 @@ data = pd.read_csv(os.path.join(os.path.dirname(__file__), '../question_data.csv
 def question(amount):  # получает на вход количество вариантов ответа для вопросов: 5
     global data
     st.session_state['option'] = []
-    # user_answ = []
     for quest_num in range(1, 10):
 
         que = data['answer'].iloc[[6 * quest_num - 6]].values[0]
 
         # вывод вопроса-картинки
-        if 'png' in que:
+        if 'png' or 'jpg' or 'jpeg' in que:
             file_name = Path(que)
             st.image(Image.open(os.path.join(os.path.dirname(__file__), file_name)))
 
