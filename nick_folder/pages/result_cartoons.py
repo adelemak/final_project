@@ -23,10 +23,13 @@ def print_result(res):
 st.balloons()
 print_result(users_result)
 
-start_test_again = st.button(":orange[**Пройти тест снова**]:rocket:")
-if start_test_again:
-    switch_page("cartoons")
+col_var, col_var2 = st.columns(2)
 
-go_to_main = st.button(":orange[**Вернуться на главную**]:taxi:")
-if go_to_main:
+with col_var:
+    start_test_again = st.button(":rocket: :orange[**Пройти тест снова**]")
+    if start_test_again:
+    switch_page("cartoons")
+with col_var2:
+    go_to_main = st.button(":taxi: :orange[**Вернуться на главную**]")
+    if go_to_main:
     switch_page("main code")
