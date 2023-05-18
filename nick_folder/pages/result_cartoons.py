@@ -28,8 +28,8 @@ col_var, col_var2 = st.columns(2)
 with col_var:
     start_test_again = st.button(":rocket: :orange[**Пройти тест снова**]")
     if start_test_again:
-    switch_page("cartoons")
+        switch_page("cartoons")
 with col_var2:
     go_to_main = st.button(":taxi: :orange[**Вернуться на главную**]")
     if go_to_main:
-    switch_page("main code")
+        switch_page("main code")
