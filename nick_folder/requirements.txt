@@ -1,7 +1,5 @@
 streamlit==1.21.0
 streamlit-extras>=0.2.7
-pandas
-PIL
-pathlib
-random
-os
+Pillow==9.5.0
+pandas==2.0.1
+
