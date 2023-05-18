@@ -47,12 +47,11 @@ def question(amount):  # получает на вход количество в�
             st.session_state['option'].append(current_question_option)
 
     user_answ = st.session_state['option']
-    # st.write(user_answ)  # проверка вывода
 
-    return user_answ
+    return user_answ  # возвращает список ответов пользователя
 
 
-def count_result(list_of_answers):
+def count_result(list_of_answers):  # получает на вход список ответов пользователя
     global data
     global dict_fin
 
@@ -60,7 +59,6 @@ def count_result(list_of_answers):
     for answer in list_of_answers:
         user_result = data['result'].iloc[data.index[data['answer'] == answer]].to_string(index=False)
         dict_fin[user_result] += 1
-
 
     # поиск результата с максимальным значением
     list_fin = dict_fin.values()
@@ -78,23 +76,10 @@ def count_result(list_of_answers):
     else:
         result = res_list[0]
 
-    return result
+    return result  # возвращает результат пользователя
 
 
-data_res = pd.read_csv(os.path.join(os.path.dirname(__file__), '../result_data.csv'), sep=";", on_bad_lines='skip')
-
-
-def print_result(res):
-    i_res = data_res.index[data_res['Result'] == res]
-    name_result = data_res['Full_name'].iloc[i_res].values[0]
-    st.title(f'Ваш результат - :orange[{name_result}]')
-    text_result = data_res['Text'].iloc[i_res].values[0]
-    st.subheader(text_result)
-    image_result = data_res['Image'].iloc[i_res].values[0]
-    st.text(image_result)
-    image_name = Path(image_result)
-    st.image(Image.open(os.path.join(os.path.dirname(__file__), image_name)))
-
+# код страницы
 st.title("Пройди тест и узнай, какой ты мультик :orange[Nickelodeon]:tada:")
 
 go_back = st.button(":orange[**Вернуться назад**]")
@@ -106,5 +91,5 @@ list_of_users_answers = question(5)
 res_button = st.button(":orange[**Узнать результаты**]")
 if res_button:
     users_result = count_result(list_of_users_answers)
-    #print_result(users_result)
+    st.session_state['users_result'] = users_result
     switch_page("result_cartoons")
