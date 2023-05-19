@@ -17,7 +17,6 @@ st.markdown("Привет! Это наш :orange[**проект**]. Здесь �
 
 st.markdown('Будет весело!:star-struck:')
 
-st.set_page_config(initial_sidebar_state="collapsed")
 
 col_test1, col_test2 = st.columns(2)
 with col_test1:
