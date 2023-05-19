@@ -6,10 +6,6 @@ from PIL import Image
 import random
 from pathlib import Path
 
-#sys.path.append(os.path.dirname(os.path.realpath(__file__)))
-
-#from cartoons import question, count_result
-
 # словарь для подсчета очков результата
 dict_fin = {
     'ДЖ': 0, 'ДЧ': 0, "ЖЗК": 0, "ВВП": 0, "ХМ": 0

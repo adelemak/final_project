@@ -18,16 +18,6 @@ st.markdown("Привет! Это наш :orange[**проект**]. Здесь �
 st.markdown('Будет весело!:star-struck:')
 
 st.set_page_config(initial_sidebar_state="collapsed")
-st.markdown(
-    """
-<style>
-    [data-testid="collapsedControl"] {
-        display: none
-    }
-</style>
-""",
-    unsafe_allow_html=True,
-)
 
 col_test1, col_test2 = st.columns(2)
 with col_test1:
@@ -39,6 +29,5 @@ with col_test2:
     if switch2:
         switch_page("cartoons")
 
-card_image = os.path.join(os.path.dirname(__file__), '../images/nickelodeon_logo.png')
 
-card(title="Quiz",text=":)", image=card_image)
+card(title="Quiz",text=":)", image="https://www.google.com/url?sa=i&url=https%3A%2F%2Fvejasp.abril.com.br%2Fcoluna%2F20-e-poucos-anos%2Fnickelodeon-anuncia-canal-exclusivo-para-desenhos-dos-anos-90&psig=AOvVaw1eotDft9jy9TeWpAOg4gT_&ust=1684566389096000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCLiT2vvogP8CFQAAAAAdAAAAABAK")
