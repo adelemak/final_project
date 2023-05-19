@@ -16,6 +16,7 @@
 - csv-файлы с данными о вопросах теста и резултатах (`question_data` и `result_data` для теста по мультфильмам; `question_series` и `result_series` для теста по сериалам
 - файл `requirements`
 ## Как запустить код
-Для запуска кода нужно установить Streamlit <a href="https://docs.streamlit.io/library/get-started/installation">docs.streamlit.io/library/get-started/installation</a> и запустить файл `main_code`, сохраняя структуру файлов. `main_code` - основная страница приложения, на том же уровне расположена папка pages, внутри которой хранятся остальные страницы. 
+Для запуска кода нужно установить Streamlit <a href="https://docs.streamlit.io/library/get-started/installation">docs.streamlit.io/library/get-started/installation</a> и запустить файл `main_code`, сохраняя структуру файлов. `main_code` - основная страница приложения, на том же уровне расположена папка `pages`, внутри которой хранятся остальные страницы. 
 ## Ресурсы
-- Документация Streamlit: <a href="https://docs.streamlit.io">docs.streamlit.io.com</a>
+- Документация <b>Streamlit</b>: <a href="https://docs.streamlit.io">docs.streamlit.io.com</a>
+- Форум <b>Streamlit</b>: <a href="https://discuss.streamlit.io">discuss.streamlit.io/a>
