@@ -2,6 +2,7 @@ import streamlit as st
 from streamlit_extras.switch_page_button import switch_page
 from streamlit_card import card
 from streamlit_extras.let_it_rain import rain
+import os
 
 rain(
     emoji="🍭",
@@ -10,9 +11,7 @@ rain(
     animation_length="1",
 )
 
-st.sidebar.success("Select")
-
-st.title('Добро пожаловать на страничку с :orange[тестами]:tada:')
+st.title('Добро пожаловать на страничку с :green[тестами]:tada:')
 
 st.markdown("Привет! Это наш :orange[**проект**]. Здесь ты можешь выбрать один из тестов и пройти его, можешь пройти оба, они интересные!")
 
@@ -24,8 +23,10 @@ with col_test1:
     if switch1:
         switch_page("series")
 with col_test2:
-    switch2 = st.button(":rainbow: :green[**Тест по мультикам**]")
+    switch2 = st.button(":rainbow: :orange[**Тест по мультикам**]")
     if switch2:
         switch_page("cartoons")
 
-card(title="Nickelodeon",text=":)", image="https://vejasp.abril.com.br/wp-content/uploads/2016/12/nickelodeon.jpg?quality=70&strip=info&w=600&resize=1200,800")
+card_image = os.path.join(os.path.dirname(__file__), '../images/nickelodeon_logo.png')
+
+card(title="Quiz",text=":)", image=card_image)
