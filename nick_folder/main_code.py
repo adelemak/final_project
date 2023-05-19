@@ -29,4 +29,4 @@ with col_test2:
         switch_page("cartoons")
 
 
-card(title="Quiz",text=":)", image="https://www.google.com/url?sa=i&url=https%3A%2F%2Fvejasp.abril.com.br%2Fcoluna%2F20-e-poucos-anos%2Fnickelodeon-anuncia-canal-exclusivo-para-desenhos-dos-anos-90&psig=AOvVaw1eotDft9jy9TeWpAOg4gT_&ust=1684566389096000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCLiT2vvogP8CFQAAAAAdAAAAABAK")
+card(title="Quiz",text=":)", image="https://vejasp.abril.com.br/wp-content/uploads/2016/12/nickelodeon.jpg")
