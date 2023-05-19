@@ -17,6 +17,18 @@ st.markdown("Привет! Это наш :orange[**проект**]. Здесь �
 
 st.markdown('Будет весело!:star-struck:')
 
+st.set_page_config(initial_sidebar_state="collapsed")
+st.markdown(
+    """
+<style>
+    [data-testid="collapsedControl"] {
+        display: none
+    }
+</style>
+""",
+    unsafe_allow_html=True,
+)
+
 col_test1, col_test2 = st.columns(2)
 with col_test1:
     switch1 = st.button(":clapper: :violet[**Тест по сериалам**]")
